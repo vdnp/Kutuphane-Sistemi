@@ -1,0 +1,51 @@
+// dummyBooks.js
+export const books = [
+  {
+    id: 1,
+    title: "Suç ve Ceza",
+    author: "Fyodor Dostoyevski",
+    category: "Roman",
+    isbn: "9789750738607",
+    stockCount: 5,
+  },
+  {
+    id: 2,
+    title: "Hayvan Çiftliği",
+    author: "George Orwell",
+    category: "Roman",
+    isbn: "9789750719385",
+    stockCount: 3,
+  },
+  {
+    id: 3,
+    title: "Sapiens: İnsan Türünün Kısa Tarihi",
+    author: "Yuval Noah Harari",
+    category: "Tarih",
+    isbn: "9786052994731",
+    stockCount: 7,
+  },
+  {
+    id: 4,
+    title: "Nutuk",
+    author: "Mustafa Kemal Atatürk",
+    category: "Tarih",
+    isbn: "9789751001236",
+    stockCount: 2,
+  },
+  {
+    id: 5,
+    title: "Beyaz Diş",
+    author: "Jack London",
+    category: "Macera",
+    isbn: "9789751408232",
+    stockCount: 4,
+  },
+  {
+    id: 6,
+    title: "Küçük Prens",
+    author: "Antoine de Saint-Exupéry",
+    category: "Çocuk",
+    isbn: "9786053609481",
+    stockCount: 10,
+  },
+];
