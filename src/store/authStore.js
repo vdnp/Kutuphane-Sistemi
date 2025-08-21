@@ -1,10 +1,12 @@
 import { create } from "zustand";
-import { users } from "../../dummyUsers";
+import { users as initialUsers } from "../../dummyUsers";
 import { FormatDate } from "../../styles/functions/generalFuncs";
 
-export const useAuthStore = create((set) => ({
+export const useAuthStore = create((set, get) => ({
+  users: initialUsers,
   currentUser: null,
   login: (email, password) => {
+    const { users } = get();
     const user = users.find(
       (u) => u.email === email && u.password === password
     );
@@ -16,8 +18,15 @@ export const useAuthStore = create((set) => ({
   },
   logout: () => set({ currentUser: null }),
   register: (name, lastName, email, phone, password) => {
+    const { users } = get();
+
+    const exists = users.some((u) => u.email === email);
+    if (exists) {
+      return false;
+    }
+
     const newUser = {
-      id: "",
+      id: users.length + 1,
       name,
       lastName,
       email,
@@ -26,7 +35,10 @@ export const useAuthStore = create((set) => ({
       role: "student",
       created_at: FormatDate(),
     };
-    users.push(newUser);
-    set({ currentUser: newUser });
+    set({
+      users: [...users, newUser],
+      currentUser: newUser,
+    });
+    return true;
   },
 }));

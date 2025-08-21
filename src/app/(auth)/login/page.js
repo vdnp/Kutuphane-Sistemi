@@ -31,7 +31,7 @@ export default function LoginPage() {
 
   const handleLogin = () => {
     if (!email || !password) {
-      toast.warning("Lütfen tüm alanları doldurun", {
+      toast.warning("Lütfen tüm alanları doldurunuz", {
         autoClose: 2000,
         closeOnClick: true,
       });
@@ -39,6 +39,7 @@ export default function LoginPage() {
     }
     setloading(true);
     const succes = login(email, password);
+    console.log(succes);
 
     if (succes) {
       toast.success("Giriş Başarılı", {

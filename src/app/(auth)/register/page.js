@@ -17,6 +17,7 @@ import {
   CustomTitle,
 } from "../../../../styles/jss/mainStyles";
 import ParticlesBackground from "@/components/ParticlesBackground";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function registerPage() {
   const [name, setName] = useState("");
@@ -29,28 +30,60 @@ export default function registerPage() {
   const register = useAuthStore((s) => s.register);
   const router = useRouter();
 
+  const resetFields = () => {
+    setName("");
+    setLastName("");
+    setEmail("");
+    setPhone("");
+    setPassword("");
+    setRePassword("");
+  };
+
   const handleRegister = () => {
     if (!name || !lastName || !email || !phone || !password || !rePassword) {
-      alert("Lütfen tüm alanları doldurun.");
+      toast.warning("Lütfen tüm alanları doldurunuz", {
+        autoClose: 2000,
+        closeOnClick: true,
+      });
       return;
     }
+
+    if (password !== rePassword) {
+      toast.error("Şifreler eşleşmiyor", {
+        autoClose: 2000,
+        closeOnClick: true,
+      });
+      return;
+    }
+
     setloading(true);
     const newSucces = register(name, lastName, email, phone, password);
 
-    setTimeout(() => {
-      if (newSucces) {
-        alert("Kaydınız başarıyla tamamlandı! Girişe yönlendiriliyorsunuz..");
+    if (newSucces) {
+      toast.success(
+        "Kaydınız başarıyla tamamlandı! Girişe yönlendiriliyorsunuz..",
+        {
+          autoClose: 2000,
+          icon: "✅",
+          closeOnClick: true,
+        }
+      );
+      setTimeout(() => {
         router.push("/dashboard");
-      } else {
-        alert("Bir hata meydana geldi..");
-      }
-      setloading(false);
-    }, 1000);
+      }, 2000);
+    } else {
+      toast.error("Bu mail adresi zaten kayıtlı", {
+        autoClose: 2000,
+        icon: "❌",
+        closeOnClick: true,
+      });
+      resetFields();
+    }
+    setloading(false);
   };
 
   return (
     <>
-      <ParticlesBackground />
       <RegisterContainer>
         <RegsiterCard>
           <CustomTitle>Kayıt Ol</CustomTitle>
@@ -74,7 +107,7 @@ export default function registerPage() {
             type="tel"
             value={phone}
             placeholder="Telefon Numaranız"
-            onChange={setPhone}
+            onChange={(e) => setPhone(e.target.value)}
           />
           <CustomInput
             type="password"
@@ -88,7 +121,9 @@ export default function registerPage() {
             placeholder="Şifreniz Tekrar"
             onChange={(e) => setRePassword(e.target.value)}
           />
-          <CustomButton onClick={handleRegister}>Kayıt ol</CustomButton>
+          <CustomButton onClick={handleRegister} disabled={loading}>
+            Kayıt ol
+          </CustomButton>
           <FooterText>
             Hesabın var mı?
             <FooterLink onClick={() => router.push("/login")}>
@@ -96,6 +131,7 @@ export default function registerPage() {
             </FooterLink>
           </FooterText>
         </RegsiterCard>
+        <ToastContainer position="top-right" />
       </RegisterContainer>
     </>
   );
