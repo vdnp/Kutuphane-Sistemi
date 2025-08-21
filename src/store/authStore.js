@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { users } from "../../dummyUsers";
+import { FormatDate } from "../../styles/functions/generalFuncs";
 
 export const useAuthStore = create((set) => ({
   currentUser: null,
@@ -14,15 +15,16 @@ export const useAuthStore = create((set) => ({
     return false;
   },
   logout: () => set({ currentUser: null }),
-  register: (name, lastName, email, password) => {
+  register: (name, lastName, email, phone, password) => {
     const newUser = {
       id: "",
       name,
       lastName,
       email,
+      phone,
       password,
       role: "student",
-      created_at: Date.now(),
+      created_at: FormatDate(),
     };
     users.push(newUser);
     set({ currentUser: newUser });

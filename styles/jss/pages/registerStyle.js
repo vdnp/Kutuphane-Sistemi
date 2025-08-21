@@ -2,18 +2,17 @@
 
 import styled from "@emotion/styled";
 
-//Login Container
-const LoginContainer = styled("div")({
+const RegisterContainer = styled("div")({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   height: "100vh",
   backgroundColor: "#f1f5f9",
   padding: "20px",
-  zIndex: -1,
+  zIndex: 0,
 });
 
-const LoginCard = styled("div")({
+const RegsiterCard = styled("div")({
   backgroundColor: "#fff",
   padding: "40px",
   borderRadius: "12px",
@@ -47,4 +46,4 @@ const FooterLink = styled("a")({
   },
 });
 
-export { LoginContainer, LoginCard, FooterText, FooterLink };
+export { RegisterContainer, RegsiterCard, FooterLink, FooterText };
