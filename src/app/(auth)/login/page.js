@@ -15,7 +15,7 @@ import {
   CustomInput,
   CustomTitle,
 } from "../../../../styles/jss/mainStyles";
-import ParticlesBackground from "@/components/ParticlesBackground";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -24,23 +24,42 @@ export default function LoginPage() {
   const login = useAuthStore((s) => s.login);
   const router = useRouter();
 
+  const resetFields = () => {
+    setEmail("");
+    setPassword("");
+  };
+
   const handleLogin = () => {
     if (!email || !password) {
-      alert("Lütfen tüm alanları doldurun.");
+      toast.warning("Lütfen tüm alanları doldurun", {
+        autoClose: 2000,
+        closeOnClick: true,
+      });
       return;
     }
     setloading(true);
     const succes = login(email, password);
 
-    setTimeout(() => {
-      if (succes) {
-        alert("Giriş başarılı...");
+    if (succes) {
+      toast.success("Giriş Başarılı", {
+        autoClose: 2000,
+        icon: "✅",
+        closeOnClick: true,
+      });
+
+      // Toast kapanma süresinden sonra yönlendir
+      setTimeout(() => {
         router.push("/dashboard");
-      } else {
-        alert("Hatalı Giriş.");
-      }
-      setloading(false);
-    }, 1000);
+      }, 2000);
+    } else {
+      toast.error("Giriş Başarısız", {
+        autoClose: 2000,
+        icon: "❌",
+        closeOnClick: true,
+      });
+      resetFields();
+    }
+    setloading(false);
   };
 
   const handleKeyPress = (e) => {
@@ -76,6 +95,7 @@ export default function LoginPage() {
             </FooterLink>
           </FooterText>
         </LoginCard>
+        <ToastContainer position="top-right" />
       </LoginContainer>
     </>
   );
