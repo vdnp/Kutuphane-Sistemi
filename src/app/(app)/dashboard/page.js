@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/authStore";
-import { books } from "dummyBooks";
+import { books } from "../../../../dummyBooks";
 import {
   Box,
   Card,
@@ -13,7 +13,7 @@ import {
   CardActionArea,
   Typography,
 } from "@mui/material";
-import { CustomButton } from "styles/jss/mainStyles";
+import { CustomButton } from "../../../../styles/jss/mainStyles";
 
 export default function DashBoardPage() {
   const [selectedCard, setSelectedCard] = useState(0);
