@@ -35,5 +35,15 @@ export default function UsersPage() {
     getData();
   }, []);
 
-  return <DataTable data={users} columns={columns} />;
+  const handleEdit = (row) => console.log("Düzenle:", row);
+  const handleDetails = (row) => console.log("Detay:", row);
+
+  return (
+    <DataTable
+      data={users}
+      columns={columns}
+      onEdit={handleEdit}
+      onDetails={handleDetails}
+    />
+  );
 }

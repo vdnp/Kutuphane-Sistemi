@@ -117,22 +117,22 @@ export default function DataTable({
                 {(onEdit || onDetails) && (
                   <ActionCell>
                     {onEdit && (
-                      <Button
+                      <CustomButton
                         variant="outline"
                         size="sm"
                         onClick={() => onEdit(row)}
                       >
                         Düzenle
-                      </Button>
+                      </CustomButton>
                     )}
                     {onDetails && (
-                      <Button
+                      <CustomButton
                         variant="outline"
                         size="sm"
                         onClick={() => onDetails(row)}
                       >
                         Detay
-                      </Button>
+                      </CustomButton>
                     )}
                   </ActionCell>
                 )}
