@@ -12,6 +12,8 @@ import {
   TableHead,
   TableHeaderCell,
   TableRow,
+  FilterContainer,
+  SearchContainer,
 } from "styles/jss/components/DataTable";
 import { TableBody } from "@mui/material";
 
@@ -76,15 +78,19 @@ export default function DataTable({
   return (
     <DataTableContainer>
       <Header>
-        <CustomInput
-          placeholder="Ara..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <SearchContainer>
+          <CustomInput
+            placeholder="Ara..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </SearchContainer>
 
-        <CustomButton onClick={() => handleReset()}>
-          Filtreleri Sıfırla
-        </CustomButton>
+        <FilterContainer>
+          <CustomButton onClick={() => handleReset()}>
+            Filtreleri Sıfırla
+          </CustomButton>
+        </FilterContainer>
       </Header>
 
       <Table>
@@ -118,8 +124,7 @@ export default function DataTable({
                   <ActionCell>
                     {onEdit && (
                       <CustomButton
-                        variant="outline"
-                        size="sm"
+                        style={{ marginRight: "5px" }}
                         onClick={() => onEdit(row)}
                       >
                         Düzenle
