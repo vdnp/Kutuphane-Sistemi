@@ -7,67 +7,95 @@ import Link from "next/link";
 const DataTableContainer = styled("div")({
   backgroundColor: "#1F2937",
   color: "#fff",
-  padding: "16px",
-  borderRadius: "12px",
-  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.05)",
+  padding: "20px",
+  borderRadius: "8px",
+  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+  maxWidth: "100%",
+  overflowX: "auto",
 });
 
 const Header = styled("div")({
   display: "flex",
   justifyContent: "space-between",
-  gap: "16px",
-  marginBottom: "16px",
+  alignItems: "center",
+  marginBottom: "20px",
+  flexWrap: "wrap",
+  gap: "12px",
 });
 
 const Table = styled("table")({
   width: "100%",
   borderCollapse: "collapse",
-  border: "1px solid #e5e7eb",
+  backgroundColor: "#fff",
+  color: "#374151",
+  borderRadius: "6px",
+  overflow: "hidden",
 });
 
 const TableHead = styled("thead")({
-  backgroundColor: "#f3f4f6",
+  backgroundColor: "#F9FAFB",
 });
 
 const TableRow = styled("tr")({
-  borderBottom: "1px solid #e5e7eb",
-  "&:hover": {
-    backgroundColor: "#f9fafb",
+  "&:nth-of-type(even)": {
+    backgroundColor: "#F9FAFB",
   },
+  "&:hover": {
+    backgroundColor: "#F3F4F6",
+  },
+  transition: "background-color 0.2s ease",
 });
 
 const TableHeaderCell = styled("th", {
   shouldForwardProp: (prop) => isPropValid(prop) && prop !== "sortable",
 })(({ sortable }) => ({
-  border: "1px solid #e5e7eb",
-  padding: "8px",
+  padding: "12px 16px",
   textAlign: "left",
+  fontWeight: "600",
+  fontSize: "14px",
+  color: "#374151",
+  borderBottom: "2px solid #E5E7EB",
   cursor: sortable ? "pointer" : "default",
+  userSelect: "none",
+  "&:hover": sortable
+    ? {
+        backgroundColor: "#E5E7EB",
+      }
+    : {},
 }));
 
 const TableCell = styled("td")({
-  border: "1px solid #e5e7eb",
-  padding: "8px",
+  padding: "12px 16px",
+  fontSize: "14px",
+  color: "#4B5563",
+  borderBottom: "1px solid #E5E7EB",
 });
 
 const ActionCell = styled("td")({
-  border: "1px solid #e5e7eb",
-  padding: "8px",
+  padding: "12px 16px",
+  borderBottom: "1px solid #E5E7EB",
+});
+
+const ActionContainer = styled("div")({
   display: "flex",
   gap: "8px",
+  alignItems: "center",
 });
 
 const Pagination = styled("div")({
   display: "flex",
-  justifyContent: "flex-end",
+  justifyContent: "center",
+  alignItems: "center",
   gap: "8px",
-  marginTop: "16px",
+  marginTop: "20px",
+  padding: "16px 0",
 });
 
 export {
   DataTableContainer,
   Pagination,
   ActionCell,
+  ActionContainer,
   TableCell,
   Table,
   TableHeaderCell,
