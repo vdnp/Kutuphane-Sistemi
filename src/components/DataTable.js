@@ -150,6 +150,25 @@ export default function DataTable({
           )}
         </TableBody>
       </Table>
+      <Pagination>
+        <CustomButton
+          variant="outline"
+          disabled={page === 1}
+          onClick={() => setPage(page - 1)}
+        >
+          Önceki
+        </CustomButton>
+        <span>
+          Sayfa {page} / {totalPages}
+        </span>
+        <CustomButton
+          variant="outline"
+          disabled={page === totalPages}
+          onClick={() => setPage(page + 1)}
+        >
+          Sonraki
+        </CustomButton>
+      </Pagination>
     </DataTableContainer>
   );
 }
