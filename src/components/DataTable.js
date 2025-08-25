@@ -13,6 +13,7 @@ import {
   TableHeaderCell,
   TableRow,
 } from "styles/jss/components/DataTable";
+import { TableBody } from "@mui/material";
 
 export default function DataTable({
   columns,
@@ -106,6 +107,48 @@ export default function DataTable({
             )}
           </TableRow>
         </TableHead>
+        <TableBody>
+          {paginatedData.length > 0 ? (
+            paginatedData.map((row, index) => (
+              <TableRow key={index}>
+                {columns.map((col) => (
+                  <TableCell key={col.key}>{row[col.key]}</TableCell>
+                ))}
+                {(onEdit || onDetails) && (
+                  <ActionCell>
+                    {onEdit && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => onEdit(row)}
+                      >
+                        Düzenle
+                      </Button>
+                    )}
+                    {onDetails && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => onDetails(row)}
+                      >
+                        Detay
+                      </Button>
+                    )}
+                  </ActionCell>
+                )}
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell
+                colSpan={columns.length + 1}
+                style={{ textAlign: "center", padding: "16px" }}
+              >
+                Veri bulunamadı
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
       </Table>
     </DataTableContainer>
   );
