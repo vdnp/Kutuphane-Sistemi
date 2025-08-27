@@ -10,5 +10,5 @@ export async function POST(req) {
     return NextResponse.json({ error: "Invalid password" }, { status: 400 });
   }
 
-  return NextResponse.json(user);
+  return NextResponse.json({ user });
 }

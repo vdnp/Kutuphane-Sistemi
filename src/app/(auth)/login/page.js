@@ -29,7 +29,7 @@ export default function LoginPage() {
     setPassword("");
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!email || !password) {
       toast.warning("Lütfen tüm alanları doldurunuz", {
         autoClose: 2000,
@@ -38,10 +38,10 @@ export default function LoginPage() {
       return;
     }
     setloading(true);
-    const succes = login(email, password);
-    console.log(succes);
+    const res = await login(email, password);
+    console.log(res);
 
-    if (succes) {
+    if (res.succes) {
       toast.success("Giriş Başarılı", {
         autoClose: 2000,
         icon: "✅",

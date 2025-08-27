@@ -1,20 +1,26 @@
 import { create } from "zustand";
 import { users as initialUsers } from "../../dummyUsers";
 import { FormatDate } from "../../styles/functions/generalFuncs";
+import { apiRequest } from "@lib/api";
 
 export const useAuthStore = create((set, get) => ({
   users: initialUsers,
   currentUser: null,
-  login: (email, password) => {
-    const { users } = get();
-    const user = users.find(
-      (u) => u.email === email && u.password === password
-    );
-    if (user) {
-      set({ currentUser: user });
-      return true;
+  login: async (email, password) => {
+    try {
+      const res = await apiRequest("auth/login", "POST", null, null, {
+        email,
+        password,
+      });
+      console.log(res);
+      if (res.error) {
+        return { succes: false, message: res.error };
+      }
+      set({ currentUser: res.user });
+      return { succes: true, message: "Giriş Başarılı." };
+    } catch (e) {
+      return { succes: false, message: "server error" };
     }
-    return false;
   },
   logout: () => set({ currentUser: null }),
   register: (name, lastName, email, phone, password) => {
