@@ -6,9 +6,16 @@ export async function POST(req) {
   await connectDb();
   const { name, lastName, email, phone, password } = await req.json();
   const user = await User.findOne({ email });
-  if (!user || user.password !== password) {
-    return NextResponse.json({ error: "Invalid password" }, { status: 400 });
+  if (user) {
+    return NextResponse.json({ error: "Already Exist" }, { status: 400 });
   }
 
-  return NextResponse.json({ user });
+  const newUser = await User.create({
+    name,
+    lastName,
+    email,
+    phone,
+    password,
+    role: "student",
+  });
 }
