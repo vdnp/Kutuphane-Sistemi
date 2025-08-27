@@ -20,8 +20,6 @@ import { TableBody } from "@mui/material";
 export default function DataTable({
   columns,
   data,
-  filters,
-  searchKey = false,
   onEdit,
   onDetails,
   pageSize = 10,
@@ -35,8 +33,16 @@ export default function DataTable({
 
   const processedData = useMemo(() => {
     let result = [...data];
-    if (filter) {
-      result = result.filter((item) => (item.status = filter));
+    // if (filter) {
+    //   result = result.filter((item) => (item.status = filter));
+    // }
+
+    if (search) {
+      result = result.filter((item) =>
+        columns.some((col) =>
+          String(item[col.key]).toLowerCase().includes(search.toLowerCase())
+        )
+      );
     }
 
     if (sortKey) {
@@ -50,7 +56,7 @@ export default function DataTable({
     }
 
     return result;
-  }, [data, search, filter, sortKey, sortOrder, columns]);
+  }, [data, search, sortKey, sortOrder, columns]);
 
   const totalPages = Math.ceil(processedData.length / pageSize);
   const paginatedData = processedData.slice(
