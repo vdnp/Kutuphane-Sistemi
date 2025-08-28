@@ -39,7 +39,7 @@ export default function registerPage() {
     setRePassword("");
   };
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!name || !lastName || !email || !phone || !password || !rePassword) {
       toast.warning("Lütfen tüm alanları doldurunuz", {
         autoClose: 2000,
@@ -57,9 +57,10 @@ export default function registerPage() {
     }
 
     setloading(true);
-    const newSucces = register(name, lastName, email, phone, password);
+    const newSucces = await register(name, lastName, email, phone, password);
+    console.log(newSucces);
 
-    if (newSucces) {
+    if (newSucces.succes) {
       toast.success(
         "Kaydınız başarıyla tamamlandı! Girişe yönlendiriliyorsunuz..",
         {

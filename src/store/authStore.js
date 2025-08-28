@@ -1,10 +1,7 @@
 import { create } from "zustand";
-import { users as initialUsers } from "../../dummyUsers";
-import { FormatDate } from "../../styles/functions/generalFuncs";
 import { apiRequest } from "@lib/api";
 
-export const useAuthStore = create((set, get) => ({
-  users: initialUsers,
+export const useAuthStore = create((set) => ({
   currentUser: null,
   login: async (email, password) => {
     try {
@@ -23,28 +20,27 @@ export const useAuthStore = create((set, get) => ({
     }
   },
   logout: () => set({ currentUser: null }),
-  register: (name, lastName, email, phone, password) => {
-    const { users } = get();
+  register: async (name, lastName, email, phone, password) => {
+    try {
+      const res = await apiRequest("auth/register", "POST", null, null, {
+        name,
+        lastName,
+        email,
+        phone,
+        password,
+      });
+      console.log(res);
+      if (res.error) {
+        return { succes: false, message: res.error };
+      }
+      const newUser = res.newUser || res; // API'nin dönüş formatına göre
 
-    const exists = users.some((u) => u.email === email);
-    if (exists) {
-      return false;
+      set({
+        currentUser: newUser,
+      });
+      return { succes: true, message: "Kayıt Başarılı." };
+    } catch (error) {
+      return { succes: false, message: "server error" };
     }
-
-    const newUser = {
-      id: users.length + 1,
-      name,
-      lastName,
-      email,
-      phone,
-      password,
-      role: "student",
-      created_at: FormatDate(),
-    };
-    set({
-      users: [...users, newUser],
-      currentUser: newUser,
-    });
-    return true;
   },
 }));

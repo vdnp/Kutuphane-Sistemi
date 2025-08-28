@@ -4,10 +4,20 @@ import { useEffect, useState } from "react";
 import { users } from "dummyUsers";
 import { apiRequest } from "@lib/api";
 import DataTable from "@/components/DataTable";
+import { useAuthStore } from "@/store/authStore";
+import { useRouter } from "next/router";
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { currentUser, logout } = useAuthStore();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!currentUser) router.push("/login");
+  }, [currentUser, router]);
+
+  if (!currentUser) return null;
 
   const getData = async () => {
     setLoading(true);
