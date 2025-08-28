@@ -5,19 +5,28 @@ import { users } from "dummyUsers";
 import { apiRequest } from "@lib/api";
 import DataTable from "@/components/DataTable";
 import { useAuthStore } from "@/store/authStore";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const { currentUser, logout } = useAuthStore();
+
+  const [columns, setColumns] = useState([
+    { key: "name", label: "Ad", sortable: true },
+    { key: "lastName", label: "SoyAd" },
+    { key: "email", label: "Email" },
+    { key: "phone", label: "Telefon" },
+    { key: "role", label: "Rol", sortable: true },
+    { key: "created_at", label: "Oluşturulma Tarihi" },
+    { key: "status", label: "Aktiflik" },
+  ]);
+
   const router = useRouter();
 
   useEffect(() => {
     if (!currentUser) router.push("/login");
   }, [currentUser, router]);
-
-  if (!currentUser) return null;
 
   const getData = async () => {
     setLoading(true);
@@ -31,19 +40,15 @@ export default function UsersPage() {
     setLoading(false);
   };
 
-  const [columns, setColumns] = useState([
-    { key: "name", label: "Ad", sortable: true },
-    { key: "lastName", label: "SoyAd" },
-    { key: "email", label: "Email" },
-    { key: "phone", label: "Telefon" },
-    { key: "role", label: "Rol", sortable: true },
-    { key: "created_at", label: "Oluşturulma Tarihi" },
-    { key: "status", label: "Aktiflik" },
-  ]);
-
   useEffect(() => {
+    if (!currentUser) return;
+
     getData();
   }, []);
+
+  if (!currentUser || loading) {
+    return <p>Loading...</p>;
+  }
 
   const handleEdit = (row) => console.log("Düzenle:", row);
   const handleDetails = (row) => console.log("Detay:", row);

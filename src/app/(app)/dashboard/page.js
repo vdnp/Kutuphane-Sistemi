@@ -24,7 +24,7 @@ export default function DashBoardPage() {
     if (!currentUser) router.push("/login");
   }, [currentUser, router]);
 
-  if (!currentUser) return null;
+  if (!currentUser) return <></>;
 
   const cards = [
     {
