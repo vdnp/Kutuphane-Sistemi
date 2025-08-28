@@ -6,6 +6,7 @@ import { apiRequest } from "@lib/api";
 import DataTable from "@/components/DataTable";
 import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "next/navigation";
+import Loading from "@/components/Loading";
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
@@ -47,7 +48,14 @@ export default function UsersPage() {
   }, []);
 
   if (!currentUser || loading) {
-    return <p>Loading...</p>;
+    return (
+      <Loading
+        width="160px"
+        height="110px"
+        text="Yükleniyor..."
+        pageCount={4}
+      />
+    );
   }
 
   const handleEdit = (row) => console.log("Düzenle:", row);
