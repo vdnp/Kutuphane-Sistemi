@@ -8,18 +8,19 @@ import { useRouter } from "next/navigation";
 import Loading from "@/components/Loading";
 
 export default function UsersPage() {
-  const [users, setUsers] = useState([]);
+  const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const { currentUser, logout } = useAuthStore();
 
   const [columns, setColumns] = useState([
-    { key: "name", label: "Ad", sortable: true },
-    { key: "lastName", label: "SoyAd" },
-    { key: "email", label: "Email" },
-    { key: "phone", label: "Telefon" },
-    { key: "role", label: "Rol", sortable: true },
-    { key: "status", label: "Aktiflik" },
-    { key: "createdAt", label: "Oluşturulma Tarihi" }, // datefield
+    { key: "title", label: "İsim", sortable: true },
+    { key: "author", label: "yazar", sortable: true },
+    { key: "category", label: "Kategori", sortable: true },
+    { key: "isbn", label: "ISBN" },
+    { key: "stock", label: "Stok Durumu", sortable: true },
+    { key: "available", label: "Mevcutluk" },
+    { key: "createDate", label: "Yazım Tarihi", sortable: true },
+    { key: "createdAt", label: "Eklenme Tarihi" },
   ]);
 
   const router = useRouter();
@@ -31,11 +32,11 @@ export default function UsersPage() {
   const getData = async () => {
     setLoading(true);
     try {
-      const respose = await apiRequest("users");
+      const respose = await apiRequest("books");
       console.log(respose);
-      setUsers(respose);
+      setBooks(respose);
     } catch (error) {
-      console.log("Users fetch err" + error);
+      console.log("Books fetch err" + error);
     }
     setLoading(false);
   };
@@ -62,7 +63,7 @@ export default function UsersPage() {
 
   return (
     <DataTable
-      data={users}
+      data={books}
       columns={columns}
       onEdit={handleEdit}
       onDetails={handleDetails}
