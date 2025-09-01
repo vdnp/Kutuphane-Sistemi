@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { CustomButton, CustomInput } from "styles/jss/mainStyles";
+import { CustomInput } from "styles/jss/mainStyles";
 import {
   DataTableContainer,
   ActionCell,
@@ -16,6 +16,7 @@ import {
   SearchContainer,
 } from "styles/jss/components/DataTable";
 import { TableBody } from "@mui/material";
+import Button from "./CustomButton";
 
 export default function DataTable({
   columns,
@@ -93,10 +94,8 @@ export default function DataTable({
         </SearchContainer>
 
         <FilterContainer>
-          <CustomButton onClick={() => handleReset()}>
-            Filtreleri Sıfırla
-          </CustomButton>
-          <CustomButton>Pdf</CustomButton>
+          <Button onClick={() => handleReset()}>Filtreleri Sıfırla</Button>
+          <Button>Pdf</Button>
         </FilterContainer>
       </Header>
 
@@ -130,21 +129,23 @@ export default function DataTable({
                 {(onEdit || onDetails) && (
                   <ActionCell>
                     {onEdit && (
-                      <CustomButton
-                        style={{ marginRight: "5px" }}
+                      <Button
+                        variant="primary"
+                        size="small"
                         onClick={() => onEdit(row)}
+                        style={{ marginRight: "5px" }}
                       >
                         Düzenle
-                      </CustomButton>
+                      </Button>
                     )}
                     {onDetails && (
-                      <CustomButton
-                        variant="outline"
-                        size="sm"
+                      <Button
+                        variant="secondary"
+                        size="small"
                         onClick={() => onDetails(row)}
                       >
                         Detay
-                      </CustomButton>
+                      </Button>
                     )}
                   </ActionCell>
                 )}
@@ -163,23 +164,23 @@ export default function DataTable({
         </TableBody>
       </Table>
       <Pagination>
-        <CustomButton
-          variant="outline"
+        <Button
+          variant="primary"
           disabled={page === 1}
           onClick={() => setPage(page - 1)}
         >
           Önceki
-        </CustomButton>
+        </Button>
         <span>
           Sayfa {page} / {totalPages}
         </span>
-        <CustomButton
-          variant="outline"
+        <Button
+          variant="primary"
           disabled={page === totalPages}
           onClick={() => setPage(page + 1)}
         >
           Sonraki
-        </CustomButton>
+        </Button>
       </Pagination>
     </DataTableContainer>
   );

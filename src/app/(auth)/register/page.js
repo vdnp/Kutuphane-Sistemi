@@ -11,11 +11,8 @@ import {
   FooterLink,
 } from "../../../../styles/jss/pages/registerStyle";
 
-import {
-  CustomButton,
-  CustomInput,
-  CustomTitle,
-} from "../../../../styles/jss/mainStyles";
+import { CustomInput, CustomTitle } from "../../../../styles/jss/mainStyles";
+import Button from "@/components/CustomButton";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -122,9 +119,9 @@ export default function registerPage() {
             placeholder="Şifreniz Tekrar"
             onChange={(e) => setRePassword(e.target.value)}
           />
-          <CustomButton onClick={handleRegister} disabled={loading}>
+          <Button onClick={handleRegister} disabled={loading}>
             Kayıt ol
-          </CustomButton>
+          </Button>
           <FooterText>
             Hesabın var mı?
             <FooterLink onClick={() => router.push("/login")}>

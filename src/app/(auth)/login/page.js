@@ -10,11 +10,8 @@ import {
   FooterLink,
 } from "../../../../styles/jss/pages/loginStyle";
 
-import {
-  CustomButton,
-  CustomInput,
-  CustomTitle,
-} from "../../../../styles/jss/mainStyles";
+import { CustomInput, CustomTitle } from "../../../../styles/jss/mainStyles";
+import Button from "@/components/CustomButton";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function LoginPage() {
@@ -86,9 +83,9 @@ export default function LoginPage() {
             placeholder="Şifreniz"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <CustomButton onClick={handleLogin} disabled={loading}>
+          <Button onClick={handleLogin} disabled={loading}>
             {loading ? "Giriş yapılıyor..." : "Giriş Yap"}
-          </CustomButton>
+          </Button>
           <FooterText>
             Hesabın yok mu?
             <FooterLink onClick={() => router.push("/register")}>

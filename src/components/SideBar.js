@@ -8,10 +8,10 @@ import { routes } from "@/config/routes";
 import {
   SideBarContainer,
   Header,
-  LogOutButton,
   Nav,
   NavLink,
 } from "../../styles/jss/components/SideBarStyle";
+import Button from "./CustomButton";
 
 export default function SideBar() {
   const [isOpen, setIsOpen] = useState(true);
@@ -40,10 +40,10 @@ export default function SideBar() {
           ))}
       </Nav>
 
-      <LogOutButton onClick={logout} isOpen={isOpen}>
+      <Button onClick={logout} isOpen={isOpen} variant="danger">
         <LogOut size={18} />
         {isOpen && "Çıkış Yap"}
-      </LogOutButton>
+      </Button>
     </SideBarContainer>
   );
 }

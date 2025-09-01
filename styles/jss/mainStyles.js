@@ -30,28 +30,6 @@ const PageContainer = styled("div")(({ center, maxWidth }) => ({
   boxSizing: "border-box",
 }));
 
-const CustomButton = styled("button")({
-  padding: "14px",
-  borderRadius: "8px",
-  border: "none",
-  backgroundColor: "#4b5563",
-  color: "#fff",
-  fontSize: "16px",
-  fontWeight: "500",
-  cursor: "pointer",
-  transition: "all 0.2s ease",
-  "&:hover": {
-    backgroundColor: "#374151",
-  },
-  "&:active": {
-    backgroundColor: "#1f2937",
-  },
-  "&:disabled": {
-    backgroundColor: "#9ca3af",
-    cursor: "not-allowed",
-  },
-});
-
 const CustomTitle = styled("h1")({
   fontSize: "28px",
   fontWeight: "600",
@@ -116,10 +94,13 @@ const colors = {
   danger: "#fa1505",
   warning: "#d9c816",
   info: "#054efa",
+  disabled: "#d1d5db",
+  disabledText: "#6b7280",
   backgroundL: "#F9FAFB",
   backgroundD: "#111827",
   textPrimary: "#1F2937",
   textSecondary: "#6B7280",
+  textLight: "#fff",
   border: "#E5E7EB",
 };
 
@@ -129,7 +110,6 @@ export {
   AppContainer,
   Content,
   PageContainer,
-  CustomButton,
   CustomTitle,
   CustomInput,
 };
