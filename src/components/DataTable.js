@@ -96,6 +96,7 @@ export default function DataTable({
           <CustomButton onClick={() => handleReset()}>
             Filtreleri Sıfırla
           </CustomButton>
+          <CustomButton>Pdf</CustomButton>
         </FilterContainer>
       </Header>
 
