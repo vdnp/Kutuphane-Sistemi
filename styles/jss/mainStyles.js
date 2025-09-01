@@ -39,28 +39,6 @@ const CustomTitle = styled("h1")({
   marginBottom: "8px",
 });
 
-const CustomInput = styled("input")({
-  width: "100%",
-  padding: "14px 16px",
-  borderRadius: "8px",
-  border: "1px solid #d1d5db",
-  fontSize: "15px",
-  outline: "none",
-  backgroundColor: "#fff",
-  transition: "all 0.2s ease",
-  boxSizing: "border-box",
-  "&::placeholder": {
-    color: "#9ca3af",
-  },
-  "&:focus": {
-    borderColor: "#6b7280",
-    boxShadow: "0 0 0 3px rgba(107, 114, 128, 0.1)",
-  },
-  "&:hover": {
-    borderColor: "#9ca3af",
-  },
-});
-
 const hexToRgb = (input) => {
   input = input + "";
   input = input.replace("#", "");
@@ -104,12 +82,4 @@ const colors = {
   border: "#E5E7EB",
 };
 
-export {
-  hexToRgb,
-  colors,
-  AppContainer,
-  Content,
-  PageContainer,
-  CustomTitle,
-  CustomInput,
-};
+export { hexToRgb, colors, AppContainer, Content, PageContainer, CustomTitle };

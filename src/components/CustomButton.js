@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
-import { CustomButton } from "styles/jss/mainStyles";
 import { colors } from "styles/jss/mainStyles";
+import { keyframes } from "@emotion/react";
+
+const spin = keyframes`
+  to { transform: rotate(360deg); }
+`;
 
 const StyledButton = styled("button")(({ variant, size }) => {
   const sizes = {
@@ -43,6 +47,19 @@ const StyledButton = styled("button")(({ variant, size }) => {
   };
 });
 
+const LoadingSpinner = styled("span")({
+  position: "absolute",
+  right: "12px",
+  top: "50%",
+  transform: "translateY(-50%)",
+  width: "16px",
+  height: "16px",
+  border: "2px solid #d1d5db",
+  borderTop: "2px solid transparent",
+  borderRadius: "50%",
+  animation: `${spin} 1s linear infinite`,
+});
+
 export default function Button({
   children,
   icon,
@@ -61,16 +78,7 @@ export default function Button({
       {...props}
     >
       {loading ? (
-        <span
-          style={{
-            width: "16px",
-            height: "16px",
-            border: "2px solid #fff",
-            borderTop: "2px solid transparent",
-            borderRadius: "50%",
-            animation: `${spin} 1s linear infinite`,
-          }}
-        />
+        <LoadingSpinner />
       ) : (
         <>
           {icon && iconPosition === "left" && icon}

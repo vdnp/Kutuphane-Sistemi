@@ -11,10 +11,11 @@ import {
   FooterLink,
 } from "../../../../styles/jss/pages/registerStyle";
 
-import { CustomInput, CustomTitle } from "../../../../styles/jss/mainStyles";
+import { CustomTitle } from "../../../../styles/jss/mainStyles";
 import Button from "@/components/CustomButton";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { toast, ToastContainer } from "react-toastify";
+import Input from "@/components/CustomInput";
 
 export default function registerPage() {
   const [name, setName] = useState("");
@@ -85,35 +86,35 @@ export default function registerPage() {
       <RegisterContainer>
         <RegsiterCard>
           <CustomTitle>Kayıt Ol</CustomTitle>
-          <CustomInput
+          <Input
             value={name}
             placeholder="Adınız"
             onChange={(e) => setName(e.target.value)}
           />
-          <CustomInput
+          <Input
             value={lastName}
             placeholder="Soyadınız"
             onChange={(e) => setLastName(e.target.value)}
           />
-          <CustomInput
+          <Input
             type="email"
             value={email}
             placeholder="Mail Adresiniz"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <CustomInput
+          <Input
             type="tel"
             value={phone}
             placeholder="Telefon Numaranız"
             onChange={(e) => setPhone(e.target.value)}
           />
-          <CustomInput
+          <Input
             type="password"
             value={password}
             placeholder="Şifreniz"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <CustomInput
+          <Input
             type="password"
             value={rePassword}
             placeholder="Şifreniz Tekrar"

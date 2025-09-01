@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { CustomInput } from "styles/jss/mainStyles";
 import {
   DataTableContainer,
   ActionCell,
@@ -17,6 +16,7 @@ import {
 } from "styles/jss/components/DataTable";
 import { TableBody } from "@mui/material";
 import Button from "./CustomButton";
+import Input from "./CustomInput";
 
 export default function DataTable({
   columns,
@@ -86,7 +86,7 @@ export default function DataTable({
     <DataTableContainer>
       <Header>
         <SearchContainer>
-          <CustomInput
+          <Input
             placeholder="Ara..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}

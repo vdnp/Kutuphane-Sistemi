@@ -10,9 +10,10 @@ import {
   FooterLink,
 } from "../../../../styles/jss/pages/loginStyle";
 
-import { CustomInput, CustomTitle } from "../../../../styles/jss/mainStyles";
+import { CustomTitle } from "../../../../styles/jss/mainStyles";
 import Button from "@/components/CustomButton";
 import { toast, ToastContainer } from "react-toastify";
+import Input from "@/components/CustomInput";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -71,13 +72,13 @@ export default function LoginPage() {
       <LoginContainer>
         <LoginCard>
           <CustomTitle>Giriş Yap</CustomTitle>
-          <CustomInput
+          <Input
             type="email"
             value={email}
             placeholder="Email adresiniz"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <CustomInput
+          <Input
             type="password"
             value={password}
             placeholder="Şifreniz"
