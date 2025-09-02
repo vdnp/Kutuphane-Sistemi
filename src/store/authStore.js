@@ -3,6 +3,23 @@ import { apiRequest } from "@lib/api";
 
 export const useAuthStore = create((set) => ({
   currentUser: null,
+  adminLogin: async (email, password) => {
+    try {
+      const res = await apiRequest("auth/admin-login", "POST", null, null, {
+        email,
+        password,
+      });
+      console.log(res);
+      if (res.user.role === "admin" || res.user.role === "librarian") {
+        set({ currentUser: res.user });
+        return { succes: true, message: "Giriş başarılı." };
+      } else {
+        return { succes: false, message: "Yetkisiz giriş." };
+      }
+    } catch (error) {
+      return { succes: false, message: "server error" };
+    }
+  },
   login: async (email, password) => {
     try {
       const res = await apiRequest("auth/login", "POST", null, null, {

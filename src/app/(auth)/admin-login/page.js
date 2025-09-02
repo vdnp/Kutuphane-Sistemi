@@ -15,11 +15,11 @@ import Button from "@/components/CustomButton";
 import { toast, ToastContainer } from "react-toastify";
 import Input from "@/components/CustomInput";
 
-export default function LoginPage() {
+export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setloading] = useState(false);
-  const login = useAuthStore((s) => s.login);
+  const adminLogin = useAuthStore((s) => s.adminLogin);
   const router = useRouter();
 
   const resetFields = () => {
@@ -36,7 +36,7 @@ export default function LoginPage() {
       return;
     }
     setloading(true);
-    const res = await login(email, password);
+    const res = await adminLogin(email, password);
     console.log(res);
 
     if (res.succes) {
@@ -48,7 +48,7 @@ export default function LoginPage() {
 
       // Toast kapanma süresinden sonra yönlendir
       setTimeout(() => {
-        router.push("/homepage");
+        router.push("/dashboard");
       }, 2000);
     } else {
       toast.error("Giriş Başarısız", {
@@ -87,12 +87,6 @@ export default function LoginPage() {
           <Button onClick={handleLogin} disabled={loading}>
             {loading ? "Giriş yapılıyor..." : "Giriş Yap"}
           </Button>
-          <FooterText>
-            Hesabın yok mu?
-            <FooterLink onClick={() => router.push("/register")}>
-              Kayıt Ol
-            </FooterLink>
-          </FooterText>
         </LoginCard>
         <ToastContainer position="top-right" />
       </LoginContainer>
