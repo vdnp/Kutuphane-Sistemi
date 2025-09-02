@@ -9,11 +9,17 @@ const AppContainer = styled("div")({
   color: "#111827",
 });
 
-const Content = styled("main")({
+const DashboardContent = styled("main")({
   flex: 1,
   padding: "24px",
   marginLeft: "240px", // Sidebar genişliği (dinamik hale de getirilebilir)
   transition: "margin-left 0.3s ease",
+  boxSizing: "border-box",
+});
+
+const Content = styled("main")({
+  flex: 1,
+  padding: "24px",
   boxSizing: "border-box",
 });
 
@@ -82,4 +88,12 @@ const colors = {
   border: "#E5E7EB",
 };
 
-export { hexToRgb, colors, AppContainer, Content, PageContainer, CustomTitle };
+export {
+  hexToRgb,
+  colors,
+  AppContainer,
+  DashboardContent,
+  Content,
+  PageContainer,
+  CustomTitle,
+};
