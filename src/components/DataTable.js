@@ -17,6 +17,7 @@ import {
 import { TableBody } from "@mui/material";
 import Button from "./CustomButton";
 import Input from "./CustomInput";
+import { BookDown, Edit, Eye, ListRestart } from "lucide-react";
 
 export default function DataTable({
   columns,
@@ -94,8 +95,13 @@ export default function DataTable({
         </SearchContainer>
 
         <FilterContainer>
-          <Button onClick={() => handleReset()}>Filtreleri Sıfırla</Button>
-          <Button>Pdf</Button>
+          <Button title="Filtreleri Sıfırla" onClick={() => handleReset()}>
+            {" "}
+            <ListRestart size={18} />{" "}
+          </Button>
+          <Button title="PDF">
+            <BookDown size={18} />
+          </Button>
         </FilterContainer>
       </Header>
 
@@ -132,19 +138,21 @@ export default function DataTable({
                       <Button
                         variant="primary"
                         size="small"
+                        title="Düzenle"
                         onClick={() => onEdit(row)}
                         style={{ marginRight: "5px" }}
                       >
-                        Düzenle
+                        <Edit size={18} />
                       </Button>
                     )}
                     {onDetails && (
                       <Button
                         variant="secondary"
                         size="small"
+                        title="Görüntüle"
                         onClick={() => onDetails(row)}
                       >
-                        Detay
+                        <Eye size={18} />
                       </Button>
                     )}
                   </ActionCell>

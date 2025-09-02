@@ -68,6 +68,7 @@ export default function Button({
   variant = "primary",
   loading = false,
   disabled = false,
+  title,
   ...props
 }) {
   return (
@@ -75,6 +76,7 @@ export default function Button({
       size={size}
       variant={variant}
       disabled={disabled || loading}
+      title={title}
       {...props}
     >
       {loading ? (
