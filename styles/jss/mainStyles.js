@@ -82,8 +82,9 @@ const colors = {
   disabledText: "#6b7280",
   backgroundL: "#F9FAFB",
   backgroundD: "#111827",
+  textTitle: "#9cc9bbff",
   textPrimary: "#1F2937",
-  textSecondary: "#6B7280",
+  textSecondary: "#8aa9a5ff",
   textLight: "#fff",
   border: "#E5E7EB",
 };
