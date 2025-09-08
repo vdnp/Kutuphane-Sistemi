@@ -3,5 +3,21 @@
 import Books from "@/components/HomePage/Books";
 
 export default function Homepage() {
-  return <Books />;
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "16px",
+        justifyContent: "space-between",
+        padding: "16px",
+      }}
+    >
+      <div style={{ flex: 3, border: "1px solid #ccc", padding: "16px" }}>
+        <Books cardStyle="image" />
+      </div>
+      <div style={{ flex: 1, border: "1px solid #ccc", padding: "16px" }}>
+        Diğer içerik
+      </div>
+    </div>
+  );
 }

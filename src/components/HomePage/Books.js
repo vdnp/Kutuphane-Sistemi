@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import Loading from "../Loading";
 import { useAuthStore } from "@/store/authStore";
 import { apiRequest } from "@lib/api";
-import List from "../List";
+import List from "./List";
 
-export default function Books() {
+export default function Books({ cardStyle }) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const { currentUser } = useAuthStore();
@@ -29,5 +29,5 @@ export default function Books() {
     getData();
   }, []);
 
-  return <>{loading ? <Loading /> : <List data={books} />}</>;
+  return <List cardStyle={cardStyle} data={books} loading={loading} />;
 }
