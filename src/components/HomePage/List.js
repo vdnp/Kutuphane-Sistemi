@@ -17,8 +17,8 @@ export default function List({ data, cardStyle = "default", loading = false }) {
     <ListWrapper>
       {data.map((item, index) => (
         <Card key={index} variant={cardStyle}>
-          {cardStyle === "image" && item.image && (
-            <CardImage src={item.image} alt={item.title} />
+          {cardStyle === "image" && item.cover_image && (
+            <CardImage src={item.cover_image} alt={item.title} />
           )}
           <CardContent>
             <CardHeader>{item.title}</CardHeader>
