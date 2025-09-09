@@ -13,7 +13,7 @@ export default function Homepage() {
       }}
     >
       <div style={{ flex: 3, border: "1px solid #ccc", padding: "16px" }}>
-        <Books cardStyle="image" />
+        <Books cardStyle="list" />
       </div>
       <div style={{ flex: 1, border: "1px solid #ccc", padding: "16px" }}>
         Diğer içerik

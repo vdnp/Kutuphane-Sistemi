@@ -2,7 +2,6 @@
 
 import styled from "@emotion/styled";
 import isPropValid from "@emotion/is-prop-valid";
-import Link from "next/link";
 
 const DataTableContainer = styled("div")({
   backgroundColor: "#1F2937",

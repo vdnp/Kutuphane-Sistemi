@@ -1,14 +1,15 @@
 "use client";
-
 import styled from "@emotion/styled";
 import { colors } from "../mainStyles";
 
-const ListWrapper = styled("div")({
+const ListWrapper = styled("div")(({ variant }) => ({
   width: "100%",
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+  display: variant === "list" ? "flex" : "grid",
+  flexDirection: variant === "list" ? "column" : "unset",
+  gridTemplateColumns:
+    variant !== "list" ? "repeat(auto-fit, minmax(180px, 1fr))" : "none",
   gap: "16px",
-});
+}));
 
 const CardImage = styled("img")({
   width: "100%",
@@ -31,9 +32,25 @@ const Card = styled("div")(({ variant }) => ({
     transform: "translateY(-4px)",
     boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
   },
+
+  // IMAGE kart stili
   ...(variant === "image" && {
-    padding: "0",
+    padding: 0,
     overflow: "hidden",
+  }),
+
+  // LIST kart stili (sadece yazı, resimsiz)
+  ...(variant === "list" && {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "12px 16px",
+    borderRadius: "6px",
+    boxShadow: "none",
+    "&:hover": {
+      transform: "none",
+      boxShadow: "0 0 0 1px #e5e7eb",
+    },
   }),
 }));
 
