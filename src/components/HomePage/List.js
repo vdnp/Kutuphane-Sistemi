@@ -13,27 +13,19 @@ import { useState } from "react";
 
 export default function List({ data, cardStyle = "default", loading = false }) {
   if (loading) return <Loading />;
-  const handleEdit = (row) => console.log("Düzenle:", row);
-  const handleDetails = (row) => console.log("Detay:", row);
+
   const [columns, setColumns] = useState([
-    { key: "title", Label: "Başlık", sortable: true },
-    { key: "author", Label: "Yazar" },
-    { key: "isbn", Label: "İSBN Numarası" },
-    { key: "category", Label: "Kategoriler" },
-    { key: "stock", Label: "Stok" },
-    { key: "available", Label: "Mevcut" },
-    { key: "createDate", Label: "Eklenme Tarihi" },
+    { key: "title", label: "Başlık", sortable: true },
+    { key: "author", label: "Yazar" },
+    { key: "isbn", label: "İSBN Numarası" },
+    { key: "category", label: "Kategoriler" },
+    { key: "stock", label: "Stok" },
+    { key: "available", label: "Mevcut" },
+    { key: "createDate", label: "Eklenme Tarihi" },
   ]);
 
   if (cardStyle === "list") {
-    return (
-      <DataTable
-        data={data}
-        columns={columns}
-        onEdit={handleEdit}
-        onDetails={handleDetails}
-      />
-    );
+    return <DataTable data={data} columns={columns} />;
   }
 
   return (

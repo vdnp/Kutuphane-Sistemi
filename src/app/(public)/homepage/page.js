@@ -12,10 +12,25 @@ export default function Homepage() {
         padding: "16px",
       }}
     >
-      <div style={{ flex: 3, border: "1px solid #ccc", padding: "16px" }}>
+      <div
+        style={{
+          flex: 3,
+          borderRadius: "8px",
+          border: "1px solid #ccc",
+          backgroundColor: "",
+          padding: "16px",
+        }}
+      >
         <Books cardStyle="list" />
       </div>
-      <div style={{ flex: 1, border: "1px solid #ccc", padding: "16px" }}>
+      <div
+        style={{
+          flex: 1,
+          borderRadius: "8px",
+          border: "1px solid #ccc",
+          padding: "16px",
+        }}
+      >
         Diğer içerik
       </div>
     </div>
