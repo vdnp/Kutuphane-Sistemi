@@ -1,8 +1,18 @@
 "use client";
 
 import Books from "@/components/HomePage/Books";
+import { useAuthStore } from "@/store/authStore";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Homepage() {
+  const { currentUser, logout } = useAuthStore();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!currentUser) router.push("/login");
+  }, [currentUser, router]);
+
   return (
     <div
       style={{

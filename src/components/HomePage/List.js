@@ -17,11 +17,13 @@ export default function List({ data, cardStyle = "default", loading = false }) {
   const [columns, setColumns] = useState([
     { key: "title", label: "Başlık", sortable: true },
     { key: "author", label: "Yazar" },
-    { key: "isbn", label: "İSBN Numarası" },
+    { key: "isbn", label: "ISBN" },
     { key: "category", label: "Kategoriler" },
     { key: "stock", label: "Stok" },
     { key: "available", label: "Mevcut" },
-    { key: "createDate", label: "Eklenme Tarihi" },
+    { key: "createDate", label: "Yazım Tarihi" },
+
+    { key: "createdAt", label: "Eklenme Tarihi" },
   ]);
 
   if (cardStyle === "list") {
