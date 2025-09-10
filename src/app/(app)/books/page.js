@@ -32,9 +32,9 @@ export default function UsersPage() {
   const getData = async () => {
     setLoading(true);
     try {
-      const respose = await apiRequest("books");
-      console.log(respose);
-      setBooks(respose);
+      const response = await apiRequest("books");
+      console.log(response);
+      setBooks(response);
     } catch (error) {
       console.log("Books fetch err" + error);
     }
