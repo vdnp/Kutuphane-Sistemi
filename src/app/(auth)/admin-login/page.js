@@ -71,7 +71,7 @@ export default function AdminLoginPage() {
     <>
       <LoginContainer>
         <LoginCard>
-          <CustomTitle>Giriş Yap</CustomTitle>
+          <CustomTitle>Yetkili Giriş Yap</CustomTitle>
           <Input
             type="email"
             value={email}

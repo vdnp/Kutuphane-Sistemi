@@ -22,8 +22,6 @@ export default function List({ data, cardStyle = "default", loading = false }) {
     { key: "stock", label: "Stok" },
     { key: "available", label: "Mevcut" },
     { key: "createDate", label: "Yazım Tarihi" },
-
-    { key: "createdAt", label: "Eklenme Tarihi" },
   ]);
 
   if (cardStyle === "list") {
