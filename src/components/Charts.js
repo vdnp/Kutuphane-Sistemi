@@ -97,6 +97,14 @@ export default function Chart({ type = "daily", data }) {
       </ChartBar>
 
       <Line data={chartData} />
+      <span style={{ textAlign: "center" }}>
+        {" "}
+        {type === "daily"
+          ? "Günlük Veriler"
+          : type === "monthly"
+          ? "Aylık Veriler"
+          : "Yıllık Veriler"}{" "}
+      </span>
     </ChartWrapper>
   );
 }
