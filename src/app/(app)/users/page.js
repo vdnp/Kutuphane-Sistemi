@@ -25,7 +25,7 @@ export default function UsersPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!currentUser) router.push("/login");
+    if (!currentUser) router.push("/admin-login");
   }, [currentUser, router]);
 
   const getData = async () => {
