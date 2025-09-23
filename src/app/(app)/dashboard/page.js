@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/authStore";
 import { apiRequest } from "@lib/api";
 import Charts from "@/components/Charts";
+import { ChartsList } from "styles/jss/components/Chart";
 
 export default function DashBoardPage() {
   const [selectedCard, setSelectedCard] = useState(0);
@@ -45,5 +46,13 @@ export default function DashBoardPage() {
 
     getData();
   }, []);
-  return <Charts type="monthly" data={stats} />;
+  return (
+    <>
+      <ChartsList>
+        <Charts type="daily" data={stats} />
+        <Charts type="monthly" data={stats} />
+        <Charts type="yearly" data={stats} />
+      </ChartsList>
+    </>
+  );
 }

@@ -10,11 +10,14 @@ import {
   CategoryScale,
   LinearScale,
 } from "chart.js";
+import { ChartBar, ChartWrapper } from "styles/jss/components/Chart";
 import { getRelativePosition } from "chart.js/helpers";
 import { apiRequest } from "@lib/api";
 import { useAuthStore } from "@/store/authStore";
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
+import Button from "./CustomButton";
+import { FormatDate } from "styles/functions/generalFuncs";
 
 ChartJs.register(
   Title,
@@ -70,10 +73,30 @@ export default function Chart({ type = "daily", data }) {
   };
 
   const handleNext = () => {
-    if (index < dataList.lenght) {
+    if (index < dataList.length - 1) {
       setIndex(index + 1);
     }
   };
 
-  return <Line data={chartData} />;
+  return (
+    <ChartWrapper>
+      <ChartBar>
+        <Button variant="primary" onClick={handlePrev} disabled={index === 0}>
+          {" "}
+          ←
+        </Button>
+        <span>{FormatDate(stat.date)}</span>
+        <Button
+          variant="primary"
+          onClick={handleNext}
+          disabled={index === dataList.length - 1}
+        >
+          {" "}
+          →
+        </Button>
+      </ChartBar>
+
+      <Line data={chartData} />
+    </ChartWrapper>
+  );
 }
