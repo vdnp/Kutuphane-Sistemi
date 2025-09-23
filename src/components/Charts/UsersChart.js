@@ -11,13 +11,11 @@ import {
   LinearScale,
 } from "chart.js";
 import { ChartBar, ChartWrapper } from "styles/jss/components/Chart";
-import { getRelativePosition } from "chart.js/helpers";
-import { apiRequest } from "@lib/api";
-import { useAuthStore } from "@/store/authStore";
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import Button from "./CustomButton";
+import Button from "../CustomButton";
 import { FormatDate } from "styles/functions/generalFuncs";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 ChartJs.register(
   Title,
@@ -29,8 +27,9 @@ ChartJs.register(
   LinearScale
 );
 
-export default function Chart({ type = "daily", data }) {
+export default function UsersChart({ type = "daily", data }) {
   const [index, setIndex] = useState(0);
+  if (!data) return <p>Veri Yok</p>;
 
   const dataList =
     type === "daily"
@@ -82,8 +81,7 @@ export default function Chart({ type = "daily", data }) {
     <ChartWrapper>
       <ChartBar>
         <Button variant="primary" onClick={handlePrev} disabled={index === 0}>
-          {" "}
-          ←
+          <ArrowLeft />
         </Button>
         <span>{FormatDate(stat.date)}</span>
         <Button
@@ -91,8 +89,7 @@ export default function Chart({ type = "daily", data }) {
           onClick={handleNext}
           disabled={index === dataList.length - 1}
         >
-          {" "}
-          →
+          <ArrowRight />
         </Button>
       </ChartBar>
 

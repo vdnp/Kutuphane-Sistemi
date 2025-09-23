@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/authStore";
 import { apiRequest } from "@lib/api";
-import Charts from "@/components/Charts";
 import { ChartsList } from "styles/jss/components/Chart";
+import { CustomTitle } from "styles/jss/mainStyles";
+import BookChart from "@/components/Charts/BooksChart";
+import UsersChart from "@/components/Charts/UsersChart";
 
 export default function DashBoardPage() {
-  const [selectedCard, setSelectedCard] = useState(0);
+  // const [selectedCard, setSelectedCard] = useState(0);
   const [currentMenu, setCurrentMenu] = useState();
   const [currentAltMenu, setCurrentAltMenu] = useState();
   const [loading, setLoading] = useState(false);
@@ -48,10 +50,17 @@ export default function DashBoardPage() {
   }, []);
   return (
     <>
+      <CustomTitle>Kitaplar</CustomTitle>
       <ChartsList>
-        <Charts type="daily" data={stats} />
-        <Charts type="monthly" data={stats} />
-        <Charts type="yearly" data={stats} />
+        <BookChart type="daily" data={stats} />
+        <BookChart type="monthly" data={stats} />
+        <BookChart type="yearly" data={stats} />
+      </ChartsList>
+      <CustomTitle style={{ marginTop: "16px" }}>Kullanıcılar</CustomTitle>
+      <ChartsList>
+        <UsersChart type="daily" data={stats} />
+        <UsersChart type="monthly" data={stats} />
+        <UsersChart type="yearly" data={stats} />
       </ChartsList>
     </>
   );
