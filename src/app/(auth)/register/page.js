@@ -68,7 +68,7 @@ export default function registerPage() {
         }
       );
       setTimeout(() => {
-        router.push("/dashboard");
+        router.push("/homepage");
       }, 2000);
     } else {
       toast.error("Bu mail adresi zaten kayıtlı", {

@@ -31,7 +31,7 @@ export default function Homepage() {
           padding: "16px",
         }}
       >
-        <Books cardStyle="list" />
+        <Books cardStyle="image" />
       </div>
       <div
         style={{
